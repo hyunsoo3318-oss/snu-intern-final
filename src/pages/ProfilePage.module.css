@@ -1,0 +1,143 @@
+.profilePage {
+  padding: 2rem;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+}
+
+.sectionTitle {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.formGroup label {
+  font-weight: bold;
+}
+
+.studentIdInput {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.studentIdInput input {
+  width: calc(100% - 80px);
+}
+
+.studentIdInput span {
+  white-space: nowrap;
+  writing-mode: horizontal-tb;
+  display: inline-block;
+}
+
+.cvInput {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 1rem;
+  min-height: 40px;
+}
+
+.departmentInput {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.firstDepartmentInput input {
+  width: 100%;
+}
+
+.departmentInput button {
+  background-color: #dc3545;
+  color: white;
+  height: 40px; /* Match input height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 1rem; /* Adjust padding for horizontal text */
+  width: 80px; /* Explicitly set width to accommodate text */
+  font-size: 1rem; /* Match font size of other labels/inputs */
+}
+
+.errorText {
+  color: red;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
+.generalError {
+  color: red;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.cvSelected {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.cvFileName {
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: calc(100% - 80px);
+  display: flex;
+  align-items: center;
+  height: 40px; /* Assuming a standard input height */
+}
+
+.deleteButton {
+  background-color: #dc3545;
+  color: white;
+  height: 40px; /* Match input height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 1rem; /* Adjust padding for horizontal text */
+  width: 80px; /* Explicitly set width to accommodate text */
+  font-size: 1rem; /* Match font size of other labels/inputs */
+}
+
+.button {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.saveButton {
+  background-color: #333;
+  color: white;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.backButton {
+  background-color: #e0e0e0;
+  color: #333;
+  width: 100%;
+}

@@ -1,0 +1,179 @@
+.main {
+  display: block;
+  padding: 20px;
+}
+
+.filterSection {
+  margin-bottom: 20px;
+}
+
+.jobFilterRow {
+  margin-bottom: 10px;
+}
+
+.otherFiltersRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.resetButtonContainer {
+  /* This container will just hold the reset button, no special styling needed unless for spacing */
+}
+
+.accordion {
+  background-color: var(--secondary-color);
+  color: var(--text-color);
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+  transition: background-color 0.4s;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.active,
+.accordion:hover {
+  background-color: var(--secondary-color-hover);
+}
+@keyframes slideDown {
+  from {
+    max-height: 0;
+  }
+  to {
+    max-height: 500px; /* Adjust as needed */
+  }
+}
+.panel {
+  padding: 0 18px;
+  background-color: var(--background-color);
+  overflow: hidden;
+  animation: slideDown 0.5s ease-out;
+}
+.chips {
+  display: flex;
+  gap: 10px;
+  list-style: none;
+  padding: 0;
+  margin: 0; /* Remove default margins */
+}
+.chip {
+  background-color: var(--secondary-color);
+  padding: 12px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  position: relative;
+  font-size: 1rem;
+  border: 1px solid var(--border-color);
+  transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+}
+.chip:hover {
+  background-color: var(--secondary-color-hover);
+}
+.resetChip {
+  background-color: var(--secondary-color);
+  padding: 12px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 1rem;
+  border: 1px solid var(--border-color);
+  transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+  list-style: none; /* Ensure no list bullet appears */
+}
+.resetChip:hover {
+  background-color: var(--secondary-color-hover);
+}
+.modalTrigger {
+  position: relative;
+}
+.modal {
+  position: absolute;
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 15px;
+  z-index: 1;
+  margin-top: 5px;
+  width: 300px;
+}
+.modalRadioOptions {
+  display: flex;
+  gap: 20px;
+  padding-bottom: 15px;
+}
+.radioLabel {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.modalActions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+.postList {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.pagination button {
+  padding: 1rem;
+  font-size: 1rem;
+  border-radius: 0;
+  border: 1px solid var(--border-color);
+  background-color: var(--background-color);
+  color: var(--text-color);
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pagination button:hover {
+  background-color: var(--secondary-color-hover);
+}
+
+.pagination button:disabled {
+  background-color: #f1f1f1;
+  cursor: not-allowed;
+}
+
+.pagination .activePage {
+  background-color: #6c757d;
+  color: #ffffff;
+}
+
+.modalBackdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modalContent {
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  min-width: 300px;
+  text-align: center;
+}
