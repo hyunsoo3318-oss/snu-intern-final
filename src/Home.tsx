@@ -72,13 +72,13 @@ const Home = () => {
 
   // when filter settings change, re-calculate query (leads to above useEffect, i.e fetchPosts)
   useEffect(() => {
-    const q: string = encodeQueryParams({
+    const q: string = encodeQueryParams({params: {
         roles: roles.length === 0 ? null : roles,
         isActive: isActive,
         domains: domains.length === DOMAINS.length ? null : domains, // if null -> all domains
         order: order,
         page: currentPage - 1,
-    });
+    }});
     setQuery(q);
   }, [roles, isActive, domains, order, currentPage]);
 
