@@ -47,7 +47,6 @@ main {
   flex: 1;
   display: flex;
   justify-content: center;
-  align-items: center;
   padding: 2rem;
 }
 
@@ -87,11 +86,7 @@ main {
 /* Form Container (for Login and Signup) */
 .form-container {
   width: 100%;
-  max-width: 400px;
-  padding: 2rem;
-  border: 1px solid #e9ecef;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  padding: 2rem 15%;
 }
 
 .form-container h1 {

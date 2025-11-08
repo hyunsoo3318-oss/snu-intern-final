@@ -33,7 +33,8 @@ const InternCard = ({ post, onLoginRequired }: InternCardProps) => {
     await toggleBookmark(post.id);
   };
 
-  const calculateDday = (dateString: string) => {
+  const calculateDday = (dateString: string | null | undefined) => {
+    if (!dateString || dateString === '상시') return '상시';
     const endDate = new Date(dateString);
     const today = new Date();
     // UTC 기준으로 변환하여 계산
@@ -88,7 +89,15 @@ const InternCard = ({ post, onLoginRequired }: InternCardProps) => {
         {/* <span className={styles.tag}>{post.positionType}</span> */}
       </div>
       <div className={styles.footer}>
-        <span className={dDay === '마감' ? styles.deadline : styles.dDay}>
+        <span
+          className={
+            dDay === '상시'
+              ? styles.alwaysHiring
+              : dDay === '마감'
+              ? styles.deadline
+              : styles.dDay
+          }
+        >
           {dDay}
         </span>
       </div>
