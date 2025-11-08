@@ -161,8 +161,8 @@ const Home = () => {
   return (
     <>
       <main className={styles.main}>
-        <div className={styles.contentWrapper}>
-          <div className={styles.filterContainer}>
+        <div className={styles.filterSection}>
+          <div className={styles.jobFilterRow}>
             <button
               className={
                 panelExpanded
@@ -283,7 +283,7 @@ const Home = () => {
               </div>
             )}
           </div>
-          <div className={styles.postsArea}>
+          <div className={styles.otherFiltersRow}>
             <ul className={styles.chips}>
               {/* 모집 상태 옵션 버튼 */}
               <li
@@ -298,7 +298,7 @@ const Home = () => {
                     className={styles.modal}
                     onClick={(e) => e.stopPropagation()} // prevents clicks inside from closing modal
                   >
-                    <div className={styles.modalOptions}>
+                    <div className={styles.modalRadioOptions}>
                       <label className={styles.radioLabel}>
                         <input
                           type="radio"
@@ -508,7 +508,7 @@ const Home = () => {
                     className={styles.modal}
                     onClick={(e) => e.stopPropagation()}
                   >
-                    <div className={styles.modalOptions}>
+                    <div className={styles.modalRadioOptions}>
                       <label className={styles.radioLabel}>
                         <input
                           type="radio"
@@ -553,42 +553,43 @@ const Home = () => {
                   </div>
                 )}
               </li>
+            </ul>
+            <div className={styles.resetButtonContainer}>
               <li className={styles.resetChip} onClick={handleReset}>
                 <FaArrowRotateRight /> <span>초기화</span>
               </li>
-            </ul>
-
-            <section className={styles.postList}>
-              {isLoading ? (
-                <p>Loading...</p>
-              ) : (
-                //test
-                currentPosts?.map((post) => (
-                  <InternCard
-                    key={post.id}
-                    post={post}
-                    onLoginRequired={handleLoginRequired}
-                  />
-                ))
-              )}
-            </section>
-
-            <div className={styles.pagination}>
-              <button
-                onClick={() => handlePageChange(currentPage - 1)}
-                disabled={currentPage === 1}
-              >
-                이전
-              </button>
-              {renderPageNumbers()}
-              <button
-                onClick={() => handlePageChange(currentPage + 1)}
-                disabled={currentPage === totalPages}
-              >
-                다음
-              </button>
             </div>
           </div>
+        </div>
+        <section className={styles.postList}>
+          {isLoading ? (
+            <p>Loading...</p>
+          ) : (
+            //test
+            currentPosts?.map((post) => (
+              <InternCard
+                key={post.id}
+                post={post}
+                onLoginRequired={handleLoginRequired}
+              />
+            ))
+          )}
+        </section>
+
+        <div className={styles.pagination}>
+          <button
+            onClick={() => handlePageChange(currentPage - 1)}
+            disabled={currentPage === 1}
+          >
+            이전
+          </button>
+          {renderPageNumbers()}
+          <button
+            onClick={() => handlePageChange(currentPage + 1)}
+            disabled={currentPage === totalPages}
+          >
+            다음
+          </button>
         </div>
         {isModalOpen && (
           <div

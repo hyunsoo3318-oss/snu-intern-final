@@ -1,14 +1,25 @@
+
 .main {
+  display: block;
   padding: 20px;
 }
 
-.contentWrapper {
-  display: flex;
-  gap: 20px;
+.filterSection {
+  margin-bottom: 20px;
 }
 
-.filterContainer {
-  width: 250px;
+.jobFilterRow {
+  margin-bottom: 10px;
+}
+
+.otherFiltersRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.resetButtonContainer {
+  /* This container will just hold the reset button, no special styling needed unless for spacing */
 }
 
 .accordion {
@@ -26,12 +37,10 @@
   justify-content: space-between;
   align-items: center;
 }
-
 .active,
 .accordion:hover {
   background-color: var(--secondary-color-hover);
 }
-
 @keyframes slideDown {
   from {
     max-height: 0;
@@ -40,26 +49,19 @@
     max-height: 500px; /* Adjust as needed */
   }
 }
-
 .panel {
   padding: 0 18px;
   background-color: var(--background-color);
   overflow: hidden;
   animation: slideDown 0.5s ease-out;
 }
-
-.postsArea {
-  flex-grow: 1;
-}
-
 .chips {
   display: flex;
   gap: 10px;
   list-style: none;
   padding: 0;
-  margin-bottom: 20px;
+  margin: 0; /* Remove default margins */
 }
-
 .chip {
   background-color: var(--secondary-color);
   padding: 12px 16px;
@@ -70,11 +72,9 @@
   border: 1px solid var(--border-color);
   transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
 }
-
 .chip:hover {
   background-color: var(--secondary-color-hover);
 }
-
 .resetChip {
   background-color: var(--secondary-color);
   padding: 12px 16px;
@@ -86,16 +86,14 @@
   font-size: 1rem;
   border: 1px solid var(--border-color);
   transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+  list-style: none; /* Ensure no list bullet appears */
 }
-
 .resetChip:hover {
   background-color: var(--secondary-color-hover);
 }
-
 .modalTrigger {
   position: relative;
 }
-
 .modal {
   position: absolute;
   background-color: white;
@@ -105,29 +103,27 @@
   margin-top: 5px;
   width: 300px;
 }
-
+.modalRadioOptions {
+  display: flex;
+  gap: 20px;
+  padding-bottom: 15px;
+}
+.radioLabel {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
 .modalActions {
   display: flex;
   justify-content: space-between;
   margin-top: 15px;
 }
 
-.resetChip {
-  background-color: #f1f1f1;
-  padding: 10px;
-  border-radius: 20px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
-
 .postList {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 20px;
 }
-
 .pagination {
   display: flex;
   justify-content: center;
@@ -179,4 +175,6 @@
   background-color: white;
   padding: 20px;
   border-radius: 5px;
+  min-width: 300px;
+  text-align: center;
 }

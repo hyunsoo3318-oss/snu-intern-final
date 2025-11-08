@@ -31,6 +31,7 @@
   background: none;
   border: none;
   cursor: pointer;
+  font-size: 1.5rem; /* Increase icon size */
 }
 
 .positionTitle {
