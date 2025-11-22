@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import apiClient from '../api';
 import styles from './ProfilePage.module.css';
@@ -30,8 +31,12 @@ const ProfilePage = () => {
         setEnrollYear(data.enrollYear.toString().slice(-2));
         setDepartments(data.department.split(','));
         setCvFileName(data.cvKey.split('/').pop() || null);
-      } catch (error: any) {
-        if (error.response && error.response.data.code === 'APPLICANT_002') {
+      } catch (error: unknown) {
+        if (
+          axios.isAxiosError(error) &&
+          error.response &&
+          error.response.data.code === 'APPLICANT_002'
+        ) {
           // Profile does not exist, so we are creating a new one
         } else {
           console.error('Failed to fetch profile:', error);
@@ -96,11 +101,15 @@ const ProfilePage = () => {
     }
 
     // Validate departments
-    if (departments.some(dep => !dep.trim())) {
-      setDepartmentsError('주전공은 필수 작성이며, 다전공은 총 6개 이하로 중복되지 않게 입력해주세요.');
+    if (departments.some((dep) => !dep.trim())) {
+      setDepartmentsError(
+        '주전공은 필수 작성이며, 다전공은 총 6개 이하로 중복되지 않게 입력해주세요.'
+      );
       isValid = false;
     } else if (new Set(departments).size !== departments.length) {
-      setDepartmentsError('주전공은 필수 작성이며, 다전공은 총 6개 이하로 중복되지 않게 입력해주세요.');
+      setDepartmentsError(
+        '주전공은 필수 작성이며, 다전공은 총 6개 이하로 중복되지 않게 입력해주세요.'
+      );
       isValid = false;
     } else {
       setDepartmentsError('');
@@ -125,12 +134,17 @@ const ProfilePage = () => {
       return;
     }
 
-    const formattedEnrollYear = parseInt(enrollYear) < 50 ? 2000 + parseInt(enrollYear) : 1900 + parseInt(enrollYear);
+    const formattedEnrollYear =
+      parseInt(enrollYear) < 50
+        ? 2000 + parseInt(enrollYear)
+        : 1900 + parseInt(enrollYear);
     const formattedDepartments = departments.join(',');
     const randomString = Math.random().toString(36).substring(2, 12);
     const date = new Date();
     const formattedDate = `${date.getFullYear()}${(date.getMonth() + 1).toString().padStart(2, '0')}${date.getDate().toString().padStart(2, '0')}`;
-    const cvKey = cvFileName ? `static/private/CV/${randomString}_${formattedDate}/${cvFileName}` : '';
+    const cvKey = cvFileName
+      ? `static/private/CV/${randomString}_${formattedDate}/${cvFileName}`
+      : '';
 
     try {
       await apiClient.put('/api/applicant/me', {
@@ -164,19 +178,28 @@ const ProfilePage = () => {
             />
             <span>학번</span>
           </div>
-          {enrollYearError && <p className={styles.errorText}>{enrollYearError}</p>}
+          {enrollYearError && (
+            <p className={styles.errorText}>{enrollYearError}</p>
+          )}
         </div>
         <div className={styles.formGroup}>
           <label>학과 *</label>
           {departments.map((department, index) => (
-            <div key={index} className={index > 0 ? styles.departmentInput : ''}>
+            <div
+              key={index}
+              className={index > 0 ? styles.departmentInput : ''}
+            >
               <input
                 type="text"
                 value={department}
                 onChange={(e) => handleDepartmentChange(index, e.target.value)}
               />
               {index > 0 && (
-                <button type="button" onClick={() => removeDepartment(index)} className={`${styles.button}`}>
+                <button
+                  type="button"
+                  onClick={() => removeDepartment(index)}
+                  className={`${styles.button}`}
+                >
                   삭제
                 </button>
               )}
@@ -187,7 +210,9 @@ const ProfilePage = () => {
               추가
             </button>
           )}
-          {departmentsError && <p className={styles.errorText}>{departmentsError}</p>}
+          {departmentsError && (
+            <p className={styles.errorText}>{departmentsError}</p>
+          )}
         </div>
         <div className={styles.formGroup}>
           <label>이력서 (CV) *</label>
@@ -208,19 +233,30 @@ const ProfilePage = () => {
             </div>
           ) : (
             <div className={styles.cvInput}>
-              <label htmlFor="cv-upload">
-                ↑ PDF 파일만 업로드 가능해요.
-              </label>
-              <input id="cv-upload" type="file" accept=".pdf" onChange={handleCvChange} style={{ display: 'none' }} />
+              <label htmlFor="cv-upload">↑ PDF 파일만 업로드 가능해요.</label>
+              <input
+                id="cv-upload"
+                type="file"
+                accept=".pdf"
+                onChange={handleCvChange}
+                style={{ display: 'none' }}
+              />
             </div>
           )}
           {cvError && <p className={styles.errorText}>{cvError}</p>}
         </div>
         <div>
-          <button type="submit" className={`${styles.button} ${styles.saveButton}`}>
+          <button
+            type="submit"
+            className={`${styles.button} ${styles.saveButton}`}
+          >
             저장
           </button>
-          <button type="button" onClick={() => navigate(-1)} className={`${styles.button} ${styles.backButton}`}>
+          <button
+            type="button"
+            onClick={() => navigate(-1)}
+            className={`${styles.button} ${styles.backButton}`}
+          >
             뒤로가기
           </button>
         </div>

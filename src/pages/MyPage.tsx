@@ -1,9 +1,10 @@
-import { useState, useEffect } from 'react';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+import { FaBookmark } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import apiClient from '../api';
 import { Post } from '../type';
 import styles from './MyPage.module.css';
-import { FaBookmark } from 'react-icons/fa';
 
 interface Profile {
   name: string;
@@ -35,8 +36,12 @@ const MyPage = () => {
           const response = await apiClient.get('/api/applicant/me');
           setProfile(response.data);
           setProfileExists(true);
-        } catch (error: any) {
-          if (error.response && error.response.data.code === 'APPLICANT_002') {
+        } catch (error: unknown) {
+          if (
+            axios.isAxiosError(error) &&
+            error.response &&
+            error.response.data.code === 'APPLICANT_002'
+          ) {
             setProfileExists(false);
           } else {
             console.error('Failed to fetch profile:', error);
@@ -124,7 +129,8 @@ const MyPage = () => {
               <div className={styles.profileName}>{profile?.name}</div>
               <div className={styles.profileEmail}>{profile?.email}</div>
               <div className={styles.profileDetails}>
-                {profile?.department.split(',').join(', ')} {profile?.enrollYear.toString().slice(-2)}학번
+                {profile?.department.split(',').join(', ')}{' '}
+                {profile?.enrollYear.toString().slice(-2)}학번
               </div>
             </div>
           ) : (

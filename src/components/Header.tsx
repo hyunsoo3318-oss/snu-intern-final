@@ -23,7 +23,9 @@ const Header: React.FC<HeaderProps> = ({ user, onLogout }) => {
         <div className="nav-links">
           {user ? (
             <>
-              <Link to="/mypage" className="nav-links">마이페이지</Link>
+              <Link to="/mypage" className="nav-links">
+                마이페이지
+              </Link>
               <button onClick={handleLogout} className="logout-button">
                 로그아웃
               </button>
